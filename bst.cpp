@@ -10,7 +10,7 @@ struct bst {
 bst * root = NULL;
 
 
-void tree_insert(bst * & root, int x) {
+void treeInsert(bst * & root, int x) {
     bst * pom = new bst;
     pom -> val = x;
     pom -> left = pom -> right = NULL;
@@ -43,14 +43,14 @@ void inorder(bst * & root) {
     }
 }
 
-bst * tree_search(bst * & root, int x) {
+bst * treeSearch(bst * & root, int x) {
     bst * roott = root;
     if (roott == NULL || x == roott -> val) return roott;
-    if (roott -> val > x) return tree_search(roott -> left, x);
-    else return tree_search(roott -> right, x);
+    if (roott -> val > x) return treeSearch(roott -> left, x);
+    else return treeSearch(roott -> right, x);
 }
 
-bst * iterative_tree_search(bst * & root, int x) {
+bst * iterativeTreeSearch(bst * & root, int x) {
     bst * roots = root;
     while (roots != NULL && x != roots -> val) {
         if (x < roots -> val)
@@ -75,7 +75,7 @@ bst * max(bst * & root) {
 }
 
 
-bst * tree_successor(bst * & rootP) {
+bst * treeSuccessor(bst * & rootP) {
 
     if (rootP == NULL) return NULL;
 
@@ -93,11 +93,11 @@ bst * tree_successor(bst * & rootP) {
 
 }
 
-void tree_delete(bst * & tree, bst * node) {
+void treeDelete(bst * & tree, bst * node) {
     bst * y = NULL;
 
     if (node -> left != NULL && node -> right != NULL)
-        y = tree_successor(node);
+        y = treeSuccessor(node);
     else
         y = node;
 
@@ -125,22 +125,22 @@ void tree_delete(bst * & tree, bst * node) {
 
 int main() {
 
-    tree_insert(root, 14);
-    tree_insert(root, 5);
-    tree_insert(root, 25);
-    tree_insert(root, 2);
-    tree_insert(root, 13);
-    tree_insert(root, 81);
-    tree_insert(root, 2137);
-    tree_insert(root, 4);
+    treeInsert(root, 14);
+    treeInsert(root, 5);
+    treeInsert(root, 25);
+    treeInsert(root, 2);
+    treeInsert(root, 13);
+    treeInsert(root, 81);
+    treeInsert(root, 2137);
+    treeInsert(root, 4);
 
     bst * sth = root -> left;
 
     inorder(root);
     cout << endl;
 
-    cout << tree_search(root, 13) << " = " << tree_successor(sth) << endl;
-    tree_delete(root, sth);
+    cout << treeSearch(root, 13) << " = " << treeSuccessor(sth) << endl;
+    treeDelete(root, sth);
     inorder(root);
     cout << endl;
 
